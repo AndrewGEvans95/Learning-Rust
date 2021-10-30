@@ -9,7 +9,7 @@ fn main() {
     println!("Guess the number!");
 
     // .. is inclusive to the lower bound but exclusive to the upper bound (kind of wild imo)
-    // .. is the same as range(1..=100)
+    // range(1..101) is the same as range(1..=100)
     let secret_number = rand::thread_rng().gen_range(1..101);
 
     println!("The secret number is: {}", secret_number);
