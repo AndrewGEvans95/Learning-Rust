@@ -1,5 +1,6 @@
 // Bring types into scope using the `use` keyword (aka the prelude)
 use std::io;
+use std::cmp::Ordering;
 use rand::Rng;
 
 
@@ -35,4 +36,26 @@ fn main() {
         .expect("Failed to read line");
     
     println!("You guessed: {}", guess);
+
+    // Convert the string to an integer
+    // parse() returns a Result<T, E> type, which is an enum with two variants, Ok and Err.
+    // The Ok variant contains the value that was parsed.
+    // The Err variant contains the error that was encountered.
+    // Create a new variable named guess
+    // NOTE: This is a "shadow" variable
+    // Rust allows use to shadow a variable by using the same name as the variable being shadowed
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
+    // Ordering is an enum that has three variants:
+    // Less, Equal, Greater
+    // The compare "cmp" function takes two arguments of the same type and compares them
+    // The match expression is used to match on the result of the cmp function
+    // The match is called a "Control Flow Operator" that compares a value against a pattern
+    // A match expression is made up of "arms". Each arm consists of a pattern and a block of code to execute if the pattern matches.
+    // (Think of arms as branches)
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!"),
+    }
 }
