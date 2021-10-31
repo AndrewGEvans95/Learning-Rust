@@ -42,7 +42,10 @@ fn main() {
         // Create a new variable named guess
         // NOTE: This is a "shadow" variable
         // Rust allows use to shadow a variable by using the same name as the variable being shadowed
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         // Ordering is an enum that has three variants:
         // Less, Equal, Greater
